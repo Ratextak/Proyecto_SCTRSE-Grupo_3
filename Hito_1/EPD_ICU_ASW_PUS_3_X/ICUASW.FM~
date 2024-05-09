@@ -6,7 +6,7 @@
 [Nombre Modelo]
 ICUASW
 [Modificado]
-0
+1
 [Opciones Modelo]
 [Version Opciones Modelo]
 4
@@ -19,9 +19,9 @@ ICUASW
 [CurrentTarget]
 0
 [MESP Directory]
-z:\home\atcsol\practicas\asw_pus_3_x_rtems_project_2024_students\asw
+z:\home\atcsol\Proyecto_SCTRSE-Grupo_3\Hito_1\asw_pus_3_x_rtems_project_2024_students\asw
 [MESP main Directory]
-z:\home\atcsol\practicas\asw_pus_3_x_rtems_project_2024_students
+z:\home\atcsol\Proyecto_SCTRSE-Grupo_3\Hito_1\asw_pus_3_x_rtems_project_2024_students
 [MESP main prototype]
 rtems_task Init (uint32_t arg)
 [MESP main return]
