@@ -18,18 +18,26 @@
 //TO_DO
 #ifdef FT_SOLO_EPD_ICU_SERV_12_5_0080
 
-EmuGSS_TCProgram20_3 prog_FT_0080_step_A(UNITIME_AFTER_POWER_ON + 4,
-		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step A, Update PID 1 to 99",1,99);
 
-EmuGSS_TCProgram5_5 prog_FT_0080_step_B(UNITIME_AFTER_POWER_ON + 8,
-		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step B, Enable EvID 0x4000",0x4000);
+EmuGSS_TCProgram5_5 prog_FT_0080_step_A(UNITIME_AFTER_POWER_ON + 4,
+		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step A Enable EvID 0x4001",0x4001);
 
-EmuGSS_TCProgram12_5 prog_FT_0080_step_C(UNITIME_AFTER_POWER_ON + 12,
-		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step C, Config PMODID 0 for monitoring PID 1",
-		0, 1, 5, 1, 0x4000, 10, 0x4001);
+EmuGSS_TCProgram12_5 prog_FT_0080_step_B(UNITIME_AFTER_POWER_ON + 8,
+		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step B, Config PMODID 0 for monitoring PID 1",
+		0, 1, 2, 1, 0x4000, 10, 0x4001);
 
-EmuGSS_TCProgram12_1 prog_FT_0080_step_D(UNITIME_AFTER_POWER_ON + 16,
-		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step D, Enable Monitoring PMODID 0", 0);
+EmuGSS_TCProgram12_1 prog_FT_0080_step_C(UNITIME_AFTER_POWER_ON + 12,
+		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step C, Enable Monitoring PMODID 0", 0);
+
+EmuGSS_TCProgram20_3 prog_FT_0080_step_D(UNITIME_AFTER_POWER_ON + 16,
+		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step D, Update PID 1 to 99",1,99);
+
+EmuGSS_TCProgram5_6 prog_FT_0080_step_E(UNITIME_AFTER_POWER_ON + 20,
+		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step E Disable EvID 0x4001",0x4001);
+
+EmuGSS_TCProgram20_3 prog_FT_0080_step_F(UNITIME_AFTER_POWER_ON + 24,
+		"FT_SOLO_EPD_ICU_SERV_12_5_0080 step F, Update PID 1 to 55",1,55);
+
 
 // Wait for (5,1) telemetry packet
 

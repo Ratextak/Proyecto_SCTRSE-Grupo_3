@@ -21,7 +21,7 @@
 #define PUS_5_LowSeverityAnomalyRIDs 	4
 
 //Medium Severity Anomaly RIDs None
-#define PUS_5_MediumSeverityAnomalyRIDs 0
+#define PUS_5_MediumSeverityAnomalyRIDs 4
 
 //High Severity Anomaly RIDs 0x4000,0x4001,0x4002,0x4003,...0x400F
 #define PUS_5_HighSeverityAnomalyRIDs 	16
