@@ -1,0 +1,323 @@
+[Version Actor SW]
+5
+0
+0
+0
+0
+[Modificado]
+0
+0
+0
+[Estructura]
+[Version Estructura]
+3
+[Parametro]
+NULL
+ 
+ 
+[FinParametro]
+[Stack]
+1
+[FinStack]
+[Puertos]
+3
+[Version Puerto]
+0
+GuidanceCtrl
+0
+1
+0
+[Version Grafico Puerto]
+0
+43
+4
+CPGuidanceCtrl
+[Version Puerto]
+0
+TMChannelCtrl
+1
+1
+0
+[Version Grafico Puerto]
+0
+43
+93
+CPTMChannelCtrl
+[Version Puerto]
+0
+Timer
+0
+1
+1
+[Version Grafico Puerto]
+0
+25
+32
+EDROOMTimingSAP
+[FinPuertos]
+[ActoresComponente]
+0
+[FinActoresComponente]
+[Uniones]
+0
+[FinUniones]
+[NumTimers]
+2
+[FinNumTimers]
+[NumMsgDef]
+10
+[FinNumMsgDef]
+[FinEstructura]
+[Comportamiento]
+[Version Comportamiento]
+3
+0
+[Pools]
+1
+[Version PoolDatosMens]
+0
+EDROOMPoolCDTMList
+CDTMList
+10
+[Modulos]
+1
+[Version Modulo]
+1
+icuasw_pus_services_iface
+ 
+v1
+ 
+1
+1
+[Eventos]
+1
+[Event]
+[Version]
+1
+EvTimerTimer
+Timer
+[Maquina de Estados]
+[Version Maquina de Estados]
+1
+Top
+NULL
+[Subestados]
+2
+[Version SubEstados]
+3
+I
+;
+;
+;
+;
+;
+0
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+73 73 55 55
+[FinObjetoGrafico]
+Ready
+;
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+182 196 219 158
+[FinObjetoGrafico]
+[PuntosEleccion]
+0
+[Version PuntosEleccion]
+2
+[Transiciones]
+3
+[Version Transicion]
+5
+Init
+I
+OSubEstI
+Ready
+DSubEst
+FInit();
+[Trigger]
+EDROOMsl
+EDROOMStart
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+109 123 182 252 0
+[FinGraficoTransicion]
+ExecTC
+Ready
+OSubEst
+Ready
+DSubEst
+;
+[Trigger]
+GuidanceCtrl
+SGuidanceTC
+true
+ 
+ 
+ 
+FExecTC();
+;
+FInvokeTxTM();
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+182 277 182 337 6
+[FinGraficoTransicion]
+GuidanceControl
+Ready
+OSubEst
+Ready
+DSubEst
+FGuidanceControl();
+[Trigger]
+Timer
+EDROOMSignalTimeout
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+222 196 376 196 4
+[FinGraficoTransicion]
+[VariablesConstantes]
+2
+[Version VariYConst]
+0
+VCurrentTMList
+CDTMList
+
+Variable
+0
+[Version VariYConst]
+0
+VGuidanceTimeout
+Pr_Time
+
+Variable
+0
+[Metodos]
+4
+[Version Metodos]
+21
+MsgDataHandler
+FExecTC()
+0
+0
+0
+0
+1
+ 
+8
+	
+		// Data access
+	
+ 
+ 
+CDEventList TCExecEventList;  	
+  
+PUS_GuidanceTCExecutor::ExecTC(varSGuidanceTC,VCurrentTMList,TCExecEventList);
+[ServiceRequest]
+Msg->data
+GuidanceCtrl
+SGuidanceTC
+CDTCHandler
+ 
+Inform
+FGuidanceControl()
+0
+0
+0
+0
+1
+ 
+8
+ 
+ 
+ 
+ 
+VGuidanceTimeout+=Pr_Time(0,100000);
+time=VGuidanceTimeout;
+ 
+PUSService129::GuidanceControl();
+[ServiceRequest]
+InformAt
+Timer
+EDROOMSignalTimeout
+CDTCHandler
+EDROOMprioVeryHigh
+Inform
+FInit()
+0
+0
+0
+0
+1
+ 
+7
+	 
+	//Timing Service useful methods
+	 
+time.GetTime(); // Get current monotonic time
+ 
+time+=Pr_Time(0,100000);	
+VGuidanceTimeout=time;
+[ServiceRequest]
+InformAt
+Timer
+EDROOMSignalTimeout
+CDTMList
+EDROOMprioNormal
+InvokeMsg
+FInvokeTxTM()
+0
+0
+0
+0
+1
+ 
+5
+	
+		// Complete Data 
+	
+	*pSTxTM_Data=VCurrentTMList;
+	VCurrentTMList.Clear();
+[ServiceRequest]
+invoke
+TMChannelCtrl
+STxTM
+CDTMList
+EDROOMprioVeryHigh
+[MaquinasSubEstados]
+0
+[FinMaquinasSubEstados]
+[Fin Maquina de Estados]
+[FinComportamiento]

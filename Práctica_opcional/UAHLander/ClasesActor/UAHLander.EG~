@@ -1,0 +1,362 @@
+[Version Actor SW]
+5
+0
+0
+0
+0
+[Modificado]
+0
+0
+3
+[Estructura]
+[Version Estructura]
+3
+[Parametro]
+NULL
+ 
+ 
+[FinParametro]
+[Stack]
+1
+[FinStack]
+[Puertos]
+1
+[Version Puerto]
+0
+Timer
+0
+1
+1
+[Version Grafico Puerto]
+0
+88
+87
+EDROOMTimingSAP
+[FinPuertos]
+[ActoresComponente]
+5
+[Version Actor Componente]
+2
+LanderManager
+1
+0
+-1
+10
+7
+EDROOMprioNormal
+ 
+[Version Grafico Actor Componente]
+0
+12.3047
+12.9363
+81.836
+22.9979
+CCLanderManager
+[Version Actor Componente]
+2
+TM_ChannelCtrl
+1
+0
+-1
+10
+7
+EDROOMprioHigh
+ 
+[Version Grafico Actor Componente]
+0
+11.3281
+67.5565
+83.0078
+80.4928
+CCTM_ChannelCtrl
+[Version Actor Componente]
+2
+HK_FDIRMng
+1
+0
+-1
+10
+7
+EDROOMprioLow
+ 
+[Version Grafico Actor Componente]
+0
+24.6094
+36.5502
+42.3828
+49.4866
+CCHK_FDIRMng
+[Version Actor Componente]
+2
+BKGTCExec
+1
+0
+-1
+10
+7
+EDROOMprioVeryLow
+ 
+[Version Grafico Actor Componente]
+0
+65.2344
+36.3449
+83.0078
+49.692
+CCBKGTCExec
+[Version Actor Componente]
+2
+HorizVelCtrl
+1
+0
+-1
+10
+7
+EDROOMprioVeryHigh
+ 
+[Version Grafico Actor Componente]
+0
+44.9219
+36.7557
+62.5
+49.4867
+CCHorizVelCtrl
+[FinActoresComponente]
+[Uniones]
+7
+[Version Union]
+0
+Union
+1
+HK_FDIRCtrl
+HK_FDIRCtrl
+HK_FDIRMng
+LanderManager
+[Version Union]
+0
+Union2
+1
+TMChannelCtrl
+TMChannelCtrl2
+HK_FDIRMng
+TM_ChannelCtrl
+[Version Union]
+0
+Union3
+1
+TMChannelCtrl3
+TMChannelCtrl
+TM_ChannelCtrl
+BKGTCExec
+[Version Union]
+0
+Union4
+1
+BKGExecCtrl
+BKGExecCtrl
+BKGTCExec
+LanderManager
+[Version Union]
+0
+Union5
+1
+TMChannelCtrl
+TMChannelCtrl
+TM_ChannelCtrl
+LanderManager
+[Version Union]
+0
+Union6
+1
+HVControl
+HVControl
+LanderManager
+HorizVelCtrl
+[Version Union]
+0
+Union7
+1
+TMChannelCtrl
+TMChannelCtrl4
+HorizVelCtrl
+TM_ChannelCtrl
+[FinUniones]
+[NumTimers]
+2
+[FinNumTimers]
+[NumMsgDef]
+10
+[FinNumMsgDef]
+[FinEstructura]
+[Comportamiento]
+[Version Comportamiento]
+3
+0
+[Pools]
+0
+[Modulos]
+1
+[Version Modulo]
+1
+emu_hw_timecode_drv
+ 
+v1
+ 
+1
+1
+[Eventos]
+1
+[Event]
+[Version]
+1
+EvTimerTimer
+Timer
+[Maquina de Estados]
+[Version Maquina de Estados]
+1
+Top
+NULL
+[Subestados]
+2
+[Version SubEstados]
+3
+I
+;
+;
+;
+;
+;
+0
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+73 73 55 55
+[FinObjetoGrafico]
+Ready
+FProgTimer();
+;
+;
+;
+;
+1
+0
+[ObjetoGrafico]
+[Version Objeto Grafico]
+0
+172 186 151 105
+[FinObjetoGrafico]
+[PuntosEleccion]
+0
+[Version PuntosEleccion]
+2
+[Transiciones]
+2
+[Version Transicion]
+5
+Init
+I
+OSubEstI
+Ready
+DSubEst
+FInit();
+[Trigger]
+EDROOMsl
+EDROOMStart
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+115 121 172 217 0
+[FinGraficoTransicion]
+Transicion1
+Ready
+OSubEst
+Ready
+DSubEst
+FEmuRxTimeCode();
+[Trigger]
+Timer
+EDROOMSignalTimeout
+true
+ 
+ 
+ 
+;
+;
+;
+0
+;
+[GraficoTransicion]
+[Version GraficoTransicion]
+0
+206 186 301 186 4
+[FinGraficoTransicion]
+[VariablesConstantes]
+1
+[Version VariYConst]
+0
+VEmuTimeCode
+Pr_Time
+
+Variable
+0
+[Metodos]
+3
+[Version Metodos]
+21
+BasicAction
+FEmuRxTimeCode()
+0
+0
+0
+0
+1
+ 
+2
+ 
+EmuHwTimeCodePassSecond();
+BasicAction
+FInit()
+0
+0
+0
+0
+1
+ 
+1
+VEmuTimeCode.GetTime();
+Inform
+FProgTimer()
+0
+0
+0
+0
+1
+ 
+7
+ 
+//Timing Service useful methods
+	 
+VEmuTimeCode+=Pr_Time(1,0);
+ 
+ 
+time=VEmuTimeCode;
+[ServiceRequest]
+InformAt
+Timer
+EDROOMSignalTimeout
+ 
+EDROOMprioNormal
+[MaquinasSubEstados]
+0
+[FinMaquinasSubEstados]
+[Fin Maquina de Estados]
+[FinComportamiento]

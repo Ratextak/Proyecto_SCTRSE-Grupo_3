@@ -1,0 +1,41 @@
+[Version Protocolo]
+9
+0
+1
+0
+10
+1
+EDROOMprioHigh
+0
+1
+1
+0
+8
+ 
+ 
+ 
+EDROOMIRQ10SendMsgToCmp 
+=PUSService19::ExtractEvActionFromQueue(EDROOMVarIRQ10);
+ 
+ 
+		
+1
+0
+10
+0
+0
+1
+[Version Mensaje]
+1
+[Version Senal]
+0
+EDROOMIRQsignal
+[Version Dato]
+1
+CDEvAction
+Z:\home\atcsol\Proyecto_SCTRSE-Grupo_3\Práctica_opcional\UAHLander\
+es.uah.aut.srg.edroom.mclev.data_sai.cdevaction
+v1
+0
+0
+0
